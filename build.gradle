@@ -1,0 +1,96 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.M7'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath('org.yaml:snakeyaml:1.18')
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'jacoco'
+
+
+group = 'com.siemens'
+version = ''
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+	flatDir {
+       dirs 'libs'
+   }
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	//runtime('org.springframework.boot:spring-boot-devtools')
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '1.5.10.RELEASE'
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	
+	testCompile group: 'com.h2database', name: 'h2', version: '1.4.196'
+	
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+	
+	compile 'org.json:json:20171018'
+
+	
+	// DATABASE DEP
+	compile('org.springframework.boot:spring-boot-starter-web')
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.0'
+	compile group: 'org.modelmapper', name: 'modelmapper', version: '1.1.2'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0' 
+	
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.2'
+}
+
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled false
+        xml.destination file("${buildDir}/test-results/test/coverage/coverage.xml")
+    }
+}
+
+
+
+test {
+    jacoco {
+        append = true
+        destinationFile = file("$buildDir/jacoco/jacocoTest.exec")
+        classDumpDir = file("$buildDir/jacoco/classpathdumps")
+    }
+}
+
+test { finalizedBy jacocoTestReport }
+
+bootRun {
+    if (project.hasProperty('jvmArgs')) {
+        jvmArgs project.jvmArgs.split('\\s+')
+    }
+}
+
+
+
+

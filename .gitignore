@@ -1,0 +1,118 @@
+# Temp files created by editors and IDE
+## Ignore everything in vscode
+.vscode/*
+## except settings.json
+!.vscode/settings.json
+!.vscode/tasks.json
+*~
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and Databases
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# Dependency directories
+node_modules/
+src/node_modules/
+jspm_packages/
+
+# App directories
+temp/
+tmp/
+# src/vendor
+build/
+release/
+pack/
+out/
+
+# Compiled files
+*.exe
+*.class
+*.pyc
+*.pyd
+*.pyo
+*.dll
+*.a
+*.o
+*.so
+*.dynlib
+
+# Package files
+*.jar
+*.war
+*.zip
+*.gz
+*.tar
+*.tgz
+*.7z
+*.rar
+*.dmg
+*.pkg
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Project files
+*.csproj
+*.csproj.user
+*.sln
+
+# Config files
+*.config
+*.conf
+*.ini
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+**/declarativeUISchema_*.xsd
+# symlink to afx module
+.eslintrc.js
+
+## Ignore WebStorm files which are system specific
+## See https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+# User-specific stuff:
+.idea/
+
+
+
+#for sts
+.classpath
+.project
+.settings
+
+#gradle
+.gradle/*
+!gradle-wrapper.jar
+bin/*
+
+.bkp/*
+
+
+#Anirudha Custom files ignore
+Anir*.java

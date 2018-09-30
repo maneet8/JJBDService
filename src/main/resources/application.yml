@@ -1,0 +1,28 @@
+server:
+  port: 8005
+spring:
+  datasource:
+    name: jjdservice
+    password: master
+    url: jdbc:postgresql://localhost:5432/jjdservice
+    username: postgres
+    driverClassName: org.postgresql.Driver
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    show-sql: true
+    properties:
+      hibernate:
+# Disable feature detection by this undocumented parameter. Check the org.hibernate.engine.jdbc.internal.JdbcServiceImpl.configure method for more details.  
+        temp.use_jdbc_metadata_defaults: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  profiles:
+    active:
+    - dev
